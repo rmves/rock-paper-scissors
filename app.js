@@ -21,7 +21,7 @@ function playRound(playerSelection,computerSelection){
         res = 'You Win! Paper beats Rock'
     }
     else if (playerSelection.toLowerCase() === 'paper' && computerSelection === 'scissors') {
-        res = 'You Lose! Scissors beats Rock'
+        res = 'You Lose! Scissors beats Paper'
     }
     else if (playerSelection.toLowerCase() === 'scissors' && computerSelection === 'rock') {
         res = 'You Lose! Rock beats Scissors'
@@ -40,10 +40,40 @@ function game(){
     let computerScore = 0
     let numGames = 0
     for (let i = 0; i < 5;i++) {
-        play = prompt('Select Rock, Paper, or Scissors')
+        let play = prompt('Select Rock, Paper, or Scissors')
         playRound(play,computerPlay(['rock','paper','scissors']))
+        if (res.charAt(4) === 'W'){
+            playerScore++
+            numGames++
+            console.log(res)
+            console.log('Your score: ' +playerScore)
+            console.log('Computer score: ' + computerScore)
+            console.log('Games played: ' + numGames)
+        }
+        else if (res.charAt(4) === 'L') {
+            computerScore++
+            numGames++
+            console.log(res)
+            console.log('Your score: ' + playerScore)
+            console.log('Computer score: ' + computerScore)
+            console.log('Games played: ' + numGames)
+        }
+        else if (res === "It's a tie! Play again"){
+            console.log(res)
+            console.log('Games played: ' + numGames)
+            i--
+        }
+        else {
+            console.log(res)
+            i--
+        }
     }
-    console.log(res)
+    if (playerScore >= 3) {
+        console.log("Congrats you won!")
+    }
+    else {
+        console.log('Sorry you lost!')
+    }
 }
 
-game()
+ game()
